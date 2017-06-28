@@ -73,7 +73,7 @@ class YandexPersonalizedChallengeParser:
                         session.web_results[index].click = 1
 
             else:
-                print 'Unknown data format: %s' % line
+                print('Unknown data format: %s' % line)
                 continue
 
         return sessions

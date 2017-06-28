@@ -29,7 +29,7 @@ class MLEInference(Inference):
             session_params = click_model.get_session_params(search_session)
 
             for rank, result in enumerate(search_session.web_results):
-                for param_name, param in session_params[rank].items():
+                for param_name, param in list(session_params[rank].items()):
                     param.update(search_session, rank)
 
 
@@ -53,7 +53,7 @@ class EMInference(Inference):
 
         orig_click_model = copy.deepcopy(click_model)
 
-        for iteration in xrange(self.iter_num):
+        for iteration in range(self.iter_num):
             new_click_model = copy.deepcopy(orig_click_model)
 
             for search_session in search_sessions:
@@ -61,7 +61,7 @@ class EMInference(Inference):
                 new_session_params = new_click_model.get_session_params(search_session)
 
                 for rank, result in enumerate(search_session.web_results):
-                    for param_name, param in new_session_params[rank].items():
+                    for param_name, param in list(new_session_params[rank].items()):
                         param.update(search_session, rank, current_session_params)
 
             click_model.params = new_click_model.params
